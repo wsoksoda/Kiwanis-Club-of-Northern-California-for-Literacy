@@ -13,6 +13,8 @@ import { ImageSlideshowComponent } from './image-slideshow/image-slideshow.compo
 import { InfoComponent } from './info/info.component';
 import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { BoardOfDirectorsComponent } from './board-of-directors/board-of-directors.component';
+import { EventOverviewComponent } from './event-overview/event-overview.component';
+import { EventDescriptionComponent } from './event-description/event-description.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { BoardOfDirectorsComponent } from './board-of-directors/board-of-directo
     InfoComponent,
     ContactInfoComponent,
     BoardOfDirectorsComponent,
+    EventOverviewComponent,
+    EventDescriptionComponent,
   ],
   imports: [
     BrowserModule,
