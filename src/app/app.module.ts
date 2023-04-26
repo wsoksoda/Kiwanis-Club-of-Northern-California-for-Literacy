@@ -9,11 +9,12 @@ import { BookOrderComponent } from './book-order/book-order.component';
 import { EventsComponent } from './events/events.component';
 import { AdminComponent } from './admin/admin.component';
 import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { EventOverviewComponent } from './event-overview/event-overview.component';
+import { EventDescriptionComponent } from './event-description/event-description.component';
 import { HomeImageSlideshowComponent } from './home-image-slideshow/home-image-slideshow.component';
 import { HomeBoardOfDirectorsComponent } from './home-board-of-directors/home-board-of-directors.component';
 import { HomeInfoComponent } from './home-info/home-info.component';
 import { HomeTitleComponent } from './home-title/home-title.component';
-
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { HomeTitleComponent } from './home-title/home-title.component';
     EventsComponent,
     AdminComponent,
     ContactInfoComponent,
+    EventOverviewComponent,
+    EventDescriptionComponent,
     HomeImageSlideshowComponent,
     HomeBoardOfDirectorsComponent,
     HomeInfoComponent,
