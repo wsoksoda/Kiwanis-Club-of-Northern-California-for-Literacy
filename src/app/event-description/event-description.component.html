@@ -1,1 +1,9 @@
-<p>event-description works!</p>
+<div>
+	<p>{{event.description}}</p>
+	<p>{{event.address}}</p>
+	<p>Will Kiwanis Club of Northern California for Literacy be attending?</p>
+	<p *ngIf="event.isLiteracyClubAttending; else notAttending">yes</p>
+	<ng-template #notAttending>no</ng-template>
+	<p>Start Time: {{event.startDate.toLocaleTimeString()}}</p>
+	<p>End Time: {{event.endDate.toLocaleTimeString()}}</p>
+</div>
