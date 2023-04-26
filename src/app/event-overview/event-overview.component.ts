@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DEFAULT_EVENT, Event } from '../data/Event';
 
 @Component({
   selector: 'app-event-overview',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./event-overview.component.css']
 })
 export class EventOverviewComponent {
+  @Input() event: Event = DEFAULT_EVENT
 
+  isExpanded = false;
 }

@@ -1,1 +1,12 @@
-<p>event-overview works!</p>
+<div>
+	<div>
+		<p>{{event.startDate.toDateString()}} {{event.title}}</p>
+		<button (click)="isExpanded = !isExpanded">
+			{{isExpanded ? "Less" : "More"}}
+		</button>
+	</div>
+	<app-event-description
+	 *ngIf="isExpanded"
+	 [event]="event"
+	 ></app-event-description>
+</div>
