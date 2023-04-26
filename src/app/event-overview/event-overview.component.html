@@ -1,7 +1,9 @@
 <div>
 	<div>
 		<p>{{event.startDate.toDateString()}} {{event.title}}</p>
-		<button (click)="isExpanded = !isExpanded">More</button>
+		<button (click)="isExpanded = !isExpanded">
+			{{isExpanded ? "Less" : "More"}}
+		</button>
 	</div>
 	<app-event-description
 	 *ngIf="isExpanded"

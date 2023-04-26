@@ -10,5 +10,4 @@ export class EventOverviewComponent {
   @Input() event: Event = DEFAULT_EVENT
 
   isExpanded = false;
-
 }
