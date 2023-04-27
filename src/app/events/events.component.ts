@@ -9,11 +9,21 @@ import { DatabaseService } from '../database.service';
 export class EventsComponent {
   constructor(private databaseService: DatabaseService) {}
   ngOnInit() {
-    this.databaseService.addEvent(DEFAULT_EVENT);
+    // this.databaseService.addEvent(
+    //   {
+    //         id: 0,
+    //         orderNumber: 1,
+    //         title: 'Elementary Book Swap',
+    //         description: 'We are exited to announce that Lincoln ELementary will be doing a book swap event with Kiwanis Club of Nothern California for Literacy providing free books while they last!',
+    //         address: '100 1st street N, Maple Road, CA, 55110',
+    //         isLiteracyClubAttending: true,
+    //         startDate: new Date(2024, 0o1, 0o2, 17, 0, 0, 0),
+    //         endDate: new Date(2024, 0o1, 0o2, 20, 0, 0, 0),
+    //       }
+    // );
     this.databaseService.getEvents().subscribe(
       (events) => {
         this.events = events;
-        console.log(events);
       }
   );
 }
