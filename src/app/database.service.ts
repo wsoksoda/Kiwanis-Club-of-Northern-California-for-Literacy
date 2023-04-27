@@ -29,6 +29,7 @@ export class DatabaseService {
    */
   async addEvent(newEvent: Event): Promise<boolean> {
     const eventIds: number[] = await firstValueFrom(this.getEvents().pipe(map(events => events.map(event => event.id))));
+    console.log(eventIds);
     
     if (eventIds.includes(newEvent.id)) {
       return false;
@@ -48,7 +49,13 @@ export class DatabaseService {
         if (data) {
           let result: Event[] = [];
           for (let key in data) {
-            result.push(data[key as keyof typeof data] as unknown as Event);
+            let subs: any[] = []
+            subs.push(data[key as keyof typeof data]);
+            for (let sub of subs) {
+              for (let key2 in sub) {
+                result.push(sub[key2] as Event);
+              }
+            }
           }
           return result;
         } else {
@@ -118,7 +125,13 @@ export class DatabaseService {
         if (data) {
           let result: Order[] = [];
           for (let key in data) {
-            result.push(data[key as keyof typeof data] as unknown as Order);
+            let subs: any[] = []
+            subs.push(data[key as keyof typeof data]);
+            for (let sub of subs) {
+              for (let key2 in sub) {
+                result.push(sub[key2] as Order);
+              }
+            }
           }
           return result;
         } else {
