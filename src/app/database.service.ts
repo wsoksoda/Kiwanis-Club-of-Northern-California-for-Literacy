@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DEFAULT_EVENT, Event } from './data/Event';
+import { Event } from './data/Event';
+import { Order } from './data/Order';
 import { Observable, map, firstValueFrom, of } from 'rxjs';
 
 @Injectable({
@@ -74,6 +75,64 @@ export class DatabaseService {
   }
 
   // ORDERS
+
+  ordersBaseUrl: string = this.baseUrl + '/orders';
+  orderUrl(id: number): string {
+    return this.ordersBaseUrl + `/${id}.json`;
+  }
+
+  /**
+   * Stores the given order in the database. If there is already another order in the database with the same id, this order won't be stored
+   * @param newOrder order to store in the database
+   * @returns false if there is an order in the database with the same id, otherwise true
+   */
+  async addOrder(newOrder: Order): Promise<boolean> {
+    const orderIds: number[] = await firstValueFrom(this.getOrders().pipe(map(orders => orders.map(order => order.id))));
+    
+    if (orderIds.includes(newOrder.id)) {
+      return false;
+    }
+
+    this.http.post(this.orderUrl(newOrder.id), newOrder).subscribe();
+    return true;
+  }
+
+  /**
+   * Returns all of the orders stored in the database
+   * @returns orders stored in the database
+   */
+  getOrders(): Observable<Order[]> {
+    return this.http.get<any[]>(this.ordersBaseUrl + '.json').pipe(
+      map(data => data ? data.filter(x => x !== null && x !== undefined).flatMap(obj => Object.keys(obj).map(key => obj[key as keyof typeof obj] as unknown as Order)) : [])
+    );
+  }
+
+  /**
+   * Removes the order with the given id from the database
+   * @param id id of the order to remove from the database
+   * @returns true if there is an order with the given id in the database, otherwise false
+   */
+  async deleteOrder(id: number): Promise<boolean> {
+    const orderIds: number[] = await firstValueFrom(this.getOrders().pipe(map(orders => orders.map(order => order.id))));
+    if (!orderIds.includes(id)) {
+      return false;
+    }
+    
+    this.http.delete(this.orderUrl(id)).subscribe();
+    return true;
+  }
+
+  /**
+   * Replaces the order with the same id in the database with the given order. If there is no order with the same id in the database, this order won't be stored
+   * @param updatedOrder order to replace the order in the database with
+   * @returns true if there is an order in the database with the same id as the given order, otherwise false
+   */
+  async updateOrder(updatedOrder: Order): Promise<boolean> {
+    if (await this.deleteOrder(updatedOrder.id)) {
+      return await this.addOrder(updatedOrder);
+    }
+    return false;
+  }
   
   // LANGUAGES
 
