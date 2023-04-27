@@ -13,6 +13,7 @@ export class EventsComponent {
   events: Event[] = [
   {
     id: 0,
+    orderNumber: 1,
     title: 'Elementary Book Swap',
     description: 'We are exited to announce that Lincoln ELementary will be doing a book swap event with Kiwanis Club of Nothern California for Literacy providing free books while they last!',
     address: '100 1st street N, Maple Road, CA, 55110',
@@ -22,6 +23,7 @@ export class EventsComponent {
   },
   {
     id: 1,
+    orderNumber: 2,
     title: 'Library Closing Giveaway',
     description: 'We need to give away some books, extra books will be provided.',
     address: '1200 11th ave NW, Maple Lake, NV, 34571',
