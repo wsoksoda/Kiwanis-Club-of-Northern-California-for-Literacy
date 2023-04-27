@@ -13,15 +13,7 @@ export class DatabaseService {
   // base url for the database
   baseUrl: string = 'https://books-fcda8-default-rtdb.firebaseio.com';
 
-  constructor(private http: HttpClient) {
-    this.test();
-  }
-
-  async test() {
-    // this.addEvent(DEFAULT_EVENT)
-    this.getEvents().subscribe(data => console.log(data))
-    this.getOrders().subscribe(data => console.log(data))
-  }
+  constructor(private http: HttpClient) {}
 
   // EVENTS
 
