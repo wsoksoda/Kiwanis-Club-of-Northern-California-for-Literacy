@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Event } from './data/Event';
-import { Order } from './data/Order';
+import { DEFAULT_EVENT, Event } from './data/Event';
+import { DEFAULT_ORDER, Order } from './data/Order';
 import { Observable, map, firstValueFrom, of } from 'rxjs';
+import { } from 'parse-json'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,15 @@ export class DatabaseService {
   // base url for the database
   baseUrl: string = 'https://books-fcda8-default-rtdb.firebaseio.com';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.test();
+  }
+
+  async test() {
+    // this.addEvent(DEFAULT_EVENT)
+    this.getEvents().subscribe(data => console.log(data))
+    this.getOrders().subscribe(data => console.log(data))
+  }
 
   // EVENTS
 
@@ -42,8 +51,18 @@ export class DatabaseService {
    * @returns events stored in the database
    */
   getEvents(): Observable<Event[]> {
-    return this.http.get<any[]>(this.eventsBaseUrl + '.json').pipe(
-      map(data => data ? data.filter(x => x !== null && x !== undefined).flatMap(obj => Object.keys(obj).map(key => obj[key as keyof typeof obj] as unknown as Event)) : [])
+    return this.http.get<any>(this.eventsBaseUrl + '.json').pipe(
+      map(data => {
+        if (data) {
+          let result: Event[] = [];
+          for (let key in data) {
+            result.push(data[key as keyof typeof data] as unknown as Event);
+          }
+          return result;
+        } else {
+          return [];
+        }
+      })
     );
   }
 
@@ -102,8 +121,18 @@ export class DatabaseService {
    * @returns orders stored in the database
    */
   getOrders(): Observable<Order[]> {
-    return this.http.get<any[]>(this.ordersBaseUrl + '.json').pipe(
-      map(data => data ? data.filter(x => x !== null && x !== undefined).flatMap(obj => Object.keys(obj).map(key => obj[key as keyof typeof obj] as unknown as Order)) : [])
+    return this.http.get<any>(this.ordersBaseUrl + '.json').pipe(
+      map(data => {
+        if (data) {
+          let result: Order[] = [];
+          for (let key in data) {
+            result.push(data[key as keyof typeof data] as unknown as Order);
+          }
+          return result;
+        } else {
+          return [];
+        }
+      })
     );
   }
 
