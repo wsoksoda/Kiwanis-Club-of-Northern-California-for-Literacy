@@ -1,42 +1,88 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DEFAULT_EVENT, Event } from './data/Event';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map, firstValueFrom, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
 
-  eventsUrl: string = this.makeUrl('events.json');
-  languagesUrl: string = this.makeUrl('languages.json');
+  // base url for the database
+  baseUrl: string = 'https://books-fcda8-default-rtdb.firebaseio.com';
 
-  makeUrl(ext: string): string {
-    return 'https://books-fcda8-default-rtdb.firebaseio.com/' + ext;
-  }
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    this.addEvent(DEFAULT_EVENT);
-    this.getEvents().subscribe(data => console.log(data));
-    this.getLanguages().subscribe(data => console.log(data));
+  // EVENTS
+
+  eventsBaseUrl: string = this.baseUrl + '/events';
+  eventUrl(id: number): string {
+    return this.eventsBaseUrl + `/${id}.json`;
   }
   
-  addEvent(newEvent: Event): void {
-    this.getEvents().pipe(
-      map(events => events ? events.map(event => event.id) : [])
-    ).subscribe(eventIds => {
-      if (!eventIds.includes(newEvent.id)) {
-        this.http.post(this.eventsUrl, newEvent).subscribe();
-      }
-    });
+  /**
+   * Stores the given event in the database. If there is already another event in the database with the same id, this event won't be stored
+   * @param newEvent event to store in the database
+   * @returns false if there is an event in the database with the same id, otherwise true
+   */
+  async addEvent(newEvent: Event): Promise<boolean> {
+    const eventIds: number[] = await firstValueFrom(this.getEvents().pipe(map(events => events.map(event => event.id))));
+    
+    if (eventIds.includes(newEvent.id)) {
+      return false;
+    }
+
+    this.http.post(this.eventUrl(newEvent.id), newEvent).subscribe();
+    return true;
   }
 
+  /**
+   * Returns all of the events stored in the database
+   * @returns events stored in the database
+   */
   getEvents(): Observable<Event[]> {
-    return this.http.get(this.eventsUrl).pipe(
-      map(data => data ? Object.keys(data).map(key => data[key as keyof typeof data] as unknown as Event) : [])
+    return this.http.get<any[]>(this.eventsBaseUrl + '.json').pipe(
+      map(data => data ? data.filter(x => x !== null && x !== undefined).flatMap(obj => Object.keys(obj).map(key => obj[key as keyof typeof obj] as unknown as Event)) : [])
     );
   }
 
+  /**
+   * Removes the event with the given id from the database
+   * @param id id of the event to remove from the database
+   * @returns true if there is an event with the given id in the database, otherwise false
+   */
+  async deleteEvent(id: number): Promise<boolean> {
+    const eventIds: number[] = await firstValueFrom(this.getEvents().pipe(map(events => events.map(event => event.id))));
+    if (!eventIds.includes(id)) {
+      return false;
+    }
+    
+    this.http.delete(this.eventUrl(id)).subscribe();
+    return true;
+  }
+
+  /**
+   * Replaces the event with the same id in the database with the given event. If there is no event with the same id in the database, this event won't be stored
+   * @param updatedEvent event to replace the event in the database with
+   * @returns true if there is an event in the database with the same id as the given event, otherwise false
+   */
+  async updateEvent(updatedEvent: Event): Promise<boolean> {
+    if (await this.deleteEvent(updatedEvent.id)) {
+      return await this.addEvent(updatedEvent);
+    }
+    return false;
+  }
+
+  // ORDERS
+  
+  // LANGUAGES
+
+  languagesUrl: string = this.baseUrl + '/languages.json';
+
+  /**
+   * Returns a list of all of the languages stored in the database
+   * @returns list of the languages stored in the database
+   */
   getLanguages(): Observable<string[]> {
     return this.http.get<string[]>(this.languagesUrl);
   }
