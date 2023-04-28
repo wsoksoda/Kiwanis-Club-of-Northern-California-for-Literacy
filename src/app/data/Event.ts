@@ -5,8 +5,7 @@ export interface Event {
 	address: string,
 	isLiteracyClubAttending: boolean,
 	startDate: Date,
-	endDate: Date,
-  orderNumber: number
+	endDate: Date
 }
 
 export let DEFAULT_EVENT: Event = {
@@ -16,6 +15,5 @@ export let DEFAULT_EVENT: Event = {
     address: '',
     isLiteracyClubAttending: false,
     startDate: new Date(),
-    endDate: new Date(),
-    orderNumber: -1
+    endDate: new Date()
   }

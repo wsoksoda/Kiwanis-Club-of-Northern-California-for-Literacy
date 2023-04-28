@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DEFAULT_EVENT, Event } from './data/Event';
-import { DEFAULT_ORDER, Order } from './data/Order';
+import { Event } from './data/Event';
+import { Order } from './data/Order';
 import { Observable, map, firstValueFrom, of } from 'rxjs';
-import { } from 'parse-json'
 
 @Injectable({
   providedIn: 'root'
