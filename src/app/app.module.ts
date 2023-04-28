@@ -15,6 +15,7 @@ import { HomeImageSlideshowComponent } from './home-image-slideshow/home-image-s
 import { HomeBoardOfDirectorsComponent } from './home-board-of-directors/home-board-of-directors.component';
 import { HomeInfoComponent } from './home-info/home-info.component';
 import { HomeTitleComponent } from './home-title/home-title.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HomeTitleComponent } from './home-title/home-title.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

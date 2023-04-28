@@ -4,7 +4,7 @@ export interface Event {
 	description: string,
 	address: string,
 	isLiteracyClubAttending: boolean,
-	startDate: Date
+	startDate: Date,
 	endDate: Date
 }
 
@@ -15,5 +15,5 @@ export let DEFAULT_EVENT: Event = {
     address: '',
     isLiteracyClubAttending: false,
     startDate: new Date(),
-    endDate: new Date(),
+    endDate: new Date()
   }
