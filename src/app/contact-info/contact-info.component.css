@@ -3,19 +3,27 @@
     background-color: #bb9b79;
     color: #013d6a;
     text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    position: fixed;
-    bottom: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     width: 100%;
 }
 
-.right{
-    display: block;
-    float: right;
-    max-width: 40%;
-}
+
 
 a{
     color: #013d6a;
+}
+
+button{
+    margin-top: .5rem;
+}
+
+.button-left{
+display: block;
+float: right;
+}
+
+.button-right{
+    display: block;
+    float: left;
 }
