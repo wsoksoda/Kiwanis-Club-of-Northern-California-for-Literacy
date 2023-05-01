@@ -1,6 +1,5 @@
-.container-fluid{
-    background-color: #013d6a;
-    
+.body{
+    border-bottom: 1px solid black;
 }
 .nav-link{
     color: #bb9b79;

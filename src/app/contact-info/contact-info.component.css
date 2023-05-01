@@ -1,3 +1,18 @@
-div{
+.body{
+
+    background-color: #bb9b79;
+    color: #013d6a;
     text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.right{
+    display: block;
+    float: right;
+    max-width: 40%;
+}
+
+a{
+    color: #013d6a;
 }
