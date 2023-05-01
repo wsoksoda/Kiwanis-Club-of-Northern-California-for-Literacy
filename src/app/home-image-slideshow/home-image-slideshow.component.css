@@ -6,11 +6,9 @@ img {
 }
 
 .body {
-    margin-top: 5vh;
+    padding-top: 5vh;
     overflow: hidden;
     text-align: center;
-    margin-bottom: 5vh;
-}
-.carousel-control-next, .carousel-control-prev, .carouselExampleIndicators{
-    color: #013d6a;
+    padding-bottom: 5vh;
+    background-color: #013d6a;
 }

@@ -2,5 +2,17 @@
     tab-size: 8;
 }
 .body{
-    width: 80%
+    background-color: #013d6a ;
+    color: black;
+    
+}
+
+.container{
+    display: block;
+    
+    max-width: 50%;
+    margin: auto;
+}
+h2{
+    text-align: center;
 }
