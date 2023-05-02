@@ -1,7 +1,8 @@
-<div *ngFor="let overview of events; let i = index">
-	<app-event-overview
-		[event] = "events[i]"
-	></app-event-overview>
+<div class="body">
+	<div class="card" *ngFor="let overview of events; let i = index">
+		<app-event-overview
+			[event] = "events[i]"
+		></app-event-overview>
+	</div>
 </div>
-
 <app-contact-info></app-contact-info>

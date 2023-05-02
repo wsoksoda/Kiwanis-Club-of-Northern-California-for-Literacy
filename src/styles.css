@@ -2,3 +2,7 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+:root {
+    --primary: #013d6a;
+    --secondary: #bb9b79;
+}

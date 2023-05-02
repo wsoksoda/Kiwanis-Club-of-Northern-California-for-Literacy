@@ -1,9 +1,10 @@
 <div>
 	<p>{{event.description}}</p>
-	<p>{{event.address}}</p>
-	<p>Will Kiwanis Club of Northern California for Literacy be attending?</p>
-	<p *ngIf="event.isLiteracyClubAttending; else notAttending">yes</p>
-	<ng-template #notAttending>no</ng-template>
-	<p>Start Time: {{event.startDate.toLocaleTimeString}}</p>
-	<p>End Time: {{event.endDate.toLocaleTimeString}}</p>
+	<hr>
+	<p><b>address: </b>{{event.address}}</p>
+	<b class="col">Will Kiwanis Club of Northern California for Literacy be attending?<br></b>
+	<p class="tab" *ngIf="event.isLiteracyClubAttending; else notAttending">yes</p>
+	<ng-template class="tab"#notAttending>no<br><br></ng-template>
+	<p><b>Start Time:</b> {{event.startDate.toLocaleTimeString()}}</p>
+	<p><b>End Time:</b> {{event.endDate.toLocaleTimeString()}}</p>
 </div>

@@ -1,0 +1,10 @@
+.body{
+	background-color: var(--primary);
+	padding: 1rem;
+	min-height: 78vh;
+}
+
+.card {
+	margin: 0rem 5rem 1rem 5rem;
+	padding: 1rem;
+}
