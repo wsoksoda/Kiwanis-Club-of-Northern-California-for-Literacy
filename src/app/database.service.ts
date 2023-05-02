@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Event } from './data/Event';
-import { Order } from './data/Order';
+import { Event, PartialEvent } from './data/Event';
+import { Order, PartialOrder } from './data/Order';
 import { Observable, map, firstValueFrom, of } from 'rxjs';
 
 @Injectable({
@@ -91,6 +91,22 @@ export class DatabaseService {
     return false;
   }
 
+  addEventId(partialEvent: PartialEvent): Observable<Event> {
+    return this.getEvents().pipe(
+      map(events => events.map(event => event.id)),
+      map(ids => ids.reduce((prev, cur) => Math.max(prev, cur), 0)),
+      map(i => ({
+        id: i,
+        title: partialEvent.title,
+        description: partialEvent.description,
+        address: partialEvent.address,
+        isLiteracyClubAttending: partialEvent.isLiteracyClubAttending,
+        startDate: partialEvent.startDate,
+        endDate: partialEvent.endDate
+      }))
+    );
+  }
+
   // ORDERS
 
   ordersBaseUrl: string = this.baseUrl + '/orders';
@@ -165,6 +181,21 @@ export class DatabaseService {
       return await this.addOrder(updatedOrder);
     }
     return false;
+  }
+
+  addOrderId(partialOrder: PartialOrder): Observable<Order> {
+    return this.getOrders().pipe(
+      map(orders => orders.map(order => order.id)),
+      map(ids => ids.reduce((prev, cur) => Math.max(prev, cur), 0)),
+      map(i => ({
+        id: i,
+        ageLower: partialOrder.ageLower,
+        ageUpper: partialOrder.ageUpper,
+        language: partialOrder.language,
+        address: partialOrder.address,
+        deliveryDate: partialOrder.deliveryDate
+      }))
+    );
   }
   
   // LANGUAGES

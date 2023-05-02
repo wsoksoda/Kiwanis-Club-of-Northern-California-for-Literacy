@@ -15,3 +15,11 @@ export const DEFAULT_ORDER: Order = {
     address: '',
     deliveryDate: new Date()
 };
+
+export type PartialOrder = {
+    ageLower: number, 
+    ageUpper: number,
+    language: string,
+    address: string,
+    deliveryDate: Date
+};
