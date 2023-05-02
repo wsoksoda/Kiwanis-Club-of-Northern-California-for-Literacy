@@ -1,10 +1,12 @@
 <div>
-	<div>
-		<p>{{event.startDate.toDateString}} {{event.title}}</p>
-		<button (click)="isExpanded = !isExpanded">
+	<div class="row justify-content-center">
+		<h6 class="col-3 my-auto">{{this.event.startDate.toDateString()}}</h6>
+		<h5 class="col my-auto">{{event.title}}</h5>
+		<button class="col-2 btn btn-primary" (click)="isExpanded = !isExpanded">
 			{{isExpanded ? "Less" : "More"}}
 		</button>
 	</div>
+	<hr *ngIf="isExpanded">
 	<app-event-description
 	 *ngIf="isExpanded"
 	 [event]="event"

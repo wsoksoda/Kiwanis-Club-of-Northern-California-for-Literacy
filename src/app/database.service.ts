@@ -52,7 +52,16 @@ export class DatabaseService {
             subs.push(data[key as keyof typeof data]);
             for (let sub of subs) {
               for (let key2 in sub) {
-                result.push(sub[key2] as Event);
+                const inter = sub[key2] as Event
+                result.push({
+                  id: inter.id,
+                  title: inter.title,
+                  description: inter.description,
+                  address: inter.address,
+                  isLiteracyClubAttending: inter.isLiteracyClubAttending,
+                  startDate: new Date(inter.startDate),
+                  endDate: new Date(inter.endDate)
+                } as Event);
               }
             }
           }
@@ -144,7 +153,15 @@ export class DatabaseService {
             subs.push(data[key as keyof typeof data]);
             for (let sub of subs) {
               for (let key2 in sub) {
-                result.push(sub[key2] as Order);
+                const inter = sub[key2] as Order;
+                result.push({
+                  id: inter.id,
+                  ageLower: inter.ageLower,
+                  ageUpper: inter.ageUpper,
+                  language: inter.language,
+                  address: inter.address,
+                  deliveryDate: new Date(inter.deliveryDate)
+                } as Order);
               }
             }
           }
