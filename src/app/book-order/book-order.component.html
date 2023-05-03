@@ -1,2 +1,83 @@
-<p>book-order works!</p>
+<div class = 'body'>
+    <h2>Book Order Form</h2>
+    <div>
+        <div *ngIf=orderErrorOccured>
+            <p class="alert alert-danger">There was a problem adding your order. Please check if the information you entered was correct. If so please try again or contact us</p>
+        </div>
+        <div *ngIf=eventErrorOccured>
+            <p class="alert alert-danger">There was a problem adding your event. Please check if the information you entered was correct. If so please try again or contact us</p>
+        </div>
+        <div *ngIf=success>
+            <p class="alert alert-success">Success</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+            <h3>Book Order</h3>
+            <div class="form-group">
+                <label for="numberBooks">Number of Books: </label>
+                <input type="number" class="form-control" min="0" #books>
+            </div>
+            <div class="form-group">
+                <label for="age-range">Age Range:</label>
+                <div class="form-control">
+                    <input type="number" id="startAge" min="0" max="18" #startAge> - <input type="number" id="endAge" min="0" max="18" #endAge>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <select id="language" class="form-control" #language>
+                    <option *ngFor="let l of languageList" value="{{l}}">{{l}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="deliveryAddress">Delivery Address:</label>
+                <textarea id="deliveryAddress" class="form-control" #deliveryAddress></textarea>
+            </div>
+            <div class="form-group">
+                <label for="deliveryDate">Delivery Date:</label>
+                <input type="date" class="form-control" #deliveryDate>
+            </div>
+            <div class="form-group">
+                <label for="emial">Email:</label>
+                <input type="email" class="form-control" #email>
+            </div>
+            <div class="form-group">
+                <label for="clubAttendance">Literacy Club Attendance: </label>
+                <input type="checkbox" #club (click)="showEventForm = !showEventForm">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6">
+        <h3>Event</h3>
+            <div class="form-group">
+                <label for="eventName">Event Name:</label>
+                <input type="text" class="form-control" #eventName>
+            </div>
+            <div class="form-group">
+                <label for="eventDetails">Event Details:</label>
+                <textarea id="eventDetails" class="form-control" name="eventDetails" #eventDetails></textarea>
+            </div>
+            <div class="form-group">
+                <label for="evenStart">Event Start:</label>
+                <input type="datetime-local" class="form-control" #start>
+            </div>
+            <div class="form-group">
+                <label for="eventEnd">Event End:</label>
+                <input type="datetime-local" class="form-control" #end>
+            </div>
+            <div class="form-group">
+                <label for="eventAddress">Event Address:</label>
+                <textarea id="eventAddress" class="form-control" name="eventAddress" #eventAddress></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <button type="button" class="col-2 btn btn-primary m-1" (click)="addOrder(books.value, startAge.value, endAge.value, language.value, deliveryAddress.value, email.value, deliveryDate.value); showEventForm ? addEvent(eventName.value, eventDetails.value, eventAddress.value, club.value, start.value, end.value) : false;">Submit</button>
+            <button type="button" class="col-2 btn btn-primary m-1" (click)="books.value='0'; startAge.value='0'; endAge.value='0'; deliveryAddress.value=''; email.value=''; deliveryDate.value=''; eventName.value=''; eventDetails.value=''; eventAddress.value=''; start.value=''; end.value=''; orderErrorOccured=false; eventErrorOccured=false;">Clear Form</button>
+        </div>
+    </div>
+</div>
 <app-contact-info></app-contact-info>

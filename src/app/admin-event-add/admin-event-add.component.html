@@ -1,0 +1,42 @@
+<h1>Add Event</h1>
+
+<div class="row">
+    <div class="mx-auto col-10 col-md-8 col-lg-6">
+        <form #addContact="ngForm"
+            (ngSubmit)="onCreateEvent(title.value,description.value,address.value,club.value, start.value, end.value)">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Title</label>
+                <input type="text" class="form-control" id="title" #title placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Description</label>
+                <input type="text" class="form-control" id="description" #description placeholder="Description">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Address</label>
+                <input type="tel" class="form-control" id="address" #address placeholder="Address">
+            </div>
+            <div class = "form-group">
+                <label for="clubAttendance">Literacy Club Attendance: </label>
+                <input type="checkbox" #club>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="date" id="start" #start value="2023-01-01">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="date" id="end" #end value="2023-01-01">
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+
+        </form>
+    </div>
+</div>

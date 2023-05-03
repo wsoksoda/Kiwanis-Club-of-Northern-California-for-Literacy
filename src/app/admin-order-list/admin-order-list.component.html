@@ -1,0 +1,10 @@
+<div class="body">
+	<div class="card" *ngFor="let o of orders; let i = index">
+		<app-admin-order
+			[order] = "orders[i]"
+		></app-admin-order>
+		<button class="col-2 btn btn-danger m-1" (click) = "delete(o.id)">
+			Delete Order
+		</button>
+	</div>
+</div>

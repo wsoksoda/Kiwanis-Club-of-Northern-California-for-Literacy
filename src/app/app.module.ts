@@ -16,6 +16,14 @@ import { HomeBoardOfDirectorsComponent } from './home-board-of-directors/home-bo
 import { HomeInfoComponent } from './home-info/home-info.component';
 import { HomeTitleComponent } from './home-title/home-title.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminEventComponent } from './admin-event/admin-event.component';
+import { AdminOrderComponent } from './admin-order/admin-order.component';
+import { AdminEventAddComponent } from './admin-event-add/admin-event-add.component';
+
+import {FormsModule} from '@angular/forms';
+import { AdminOrderListComponent } from './admin-order-list/admin-order-list.component';
+import { AdminEventInfoComponent } from './admin-event-info/admin-event-info.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +39,19 @@ import { HttpClientModule } from '@angular/common/http';
     HomeImageSlideshowComponent,
     HomeBoardOfDirectorsComponent,
     HomeInfoComponent,
-    HomeTitleComponent
+    HomeTitleComponent,
+    AdminLoginComponent,
+    AdminEventComponent,
+    AdminOrderComponent,
+    AdminEventAddComponent,
+    AdminEventInfoComponent,
+    AdminOrderListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

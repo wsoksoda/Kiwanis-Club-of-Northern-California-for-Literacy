@@ -1,0 +1,24 @@
+<div class="body">
+    <div class="card" *ngFor="let overview of events; let i = index">
+        <app-event-overview [event]="events[i]"></app-event-overview>
+
+        <div class="row">
+            <div class="text-center">
+                <button class="col-2 btn btn-primary m-1" routerLink="/edit-event/{{overview.id}}">
+                    Edit Event
+                </button>
+                <button class="col-2 btn btn-danger m-1" (click) = "delete(overview.id)">
+                    Delete Event
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <a href='add-events'>
+        <div class="text-center mt-3">
+            <button class="col-2 btn btn-light">
+                Add Event
+            </button>
+        </div>
+    </a>
+</div>

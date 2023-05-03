@@ -1,9 +1,11 @@
 .btn-primary {
 	background-color: var(--secondary);
 	border-color: var(--secondary);
+	color: black;
 }
 
 .btn-primary:active {
 	background-color: var(--primary);
 	border-color: var(--primary);
+	
 }

@@ -94,7 +94,8 @@ export class DatabaseService {
    * @returns true if there is an event in the database with the same id as the given event, otherwise false
    */
   async updateEvent(updatedEvent: Event): Promise<boolean> {
-    if (await this.deleteEvent(updatedEvent.id)) {
+    const successfulDelete: boolean = await this.deleteEvent(updatedEvent.id);
+    if (successfulDelete) {
       return await this.addEvent(updatedEvent);
     }
     return false;
@@ -105,7 +106,7 @@ export class DatabaseService {
       map(events => events.map(event => event.id)),
       map(ids => ids.reduce((prev, cur) => Math.max(prev, cur), 0)),
       map(i => ({
-        id: i,
+        id: i+1,
         title: partialEvent.title,
         description: partialEvent.description,
         address: partialEvent.address,
@@ -156,6 +157,8 @@ export class DatabaseService {
                 const inter = sub[key2] as Order;
                 result.push({
                   id: inter.id,
+                  email : inter.email,
+                  numBooks : inter.numBooks,
                   ageLower: inter.ageLower,
                   ageUpper: inter.ageUpper,
                   language: inter.language,
@@ -194,7 +197,8 @@ export class DatabaseService {
    * @returns true if there is an order in the database with the same id as the given order, otherwise false
    */
   async updateOrder(updatedOrder: Order): Promise<boolean> {
-    if (await this.deleteOrder(updatedOrder.id)) {
+    const successfulDelete: boolean = await this.deleteOrder(updatedOrder.id);
+    if (successfulDelete) {
       return await this.addOrder(updatedOrder);
     }
     return false;
@@ -205,11 +209,13 @@ export class DatabaseService {
       map(orders => orders.map(order => order.id)),
       map(ids => ids.reduce((prev, cur) => Math.max(prev, cur), 0)),
       map(i => ({
-        id: i,
+        id: i+1,
+        numBooks : partialOrder.numBooks,
         ageLower: partialOrder.ageLower,
         ageUpper: partialOrder.ageUpper,
         language: partialOrder.language,
         address: partialOrder.address,
+        email : partialOrder.email,
         deliveryDate: partialOrder.deliveryDate
       }))
     );

@@ -1,0 +1,10 @@
+.body{
+    min-height: vh90;
+    background-color: var(--primary);
+    color:white;
+}
+h2{
+    text-align: center;
+    color: var(--secondary)
+}
+
