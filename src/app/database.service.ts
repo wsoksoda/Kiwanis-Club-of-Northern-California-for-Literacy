@@ -34,7 +34,7 @@ export class DatabaseService {
       return false;
     }
 
-    this.http.post(this.eventUrl(newEvent.id), newEvent).subscribe();
+    await firstValueFrom(this.http.post(this.eventUrl(newEvent.id), newEvent));
     return true;
   }
 
@@ -84,7 +84,7 @@ export class DatabaseService {
       return false;
     }
     
-    this.http.delete(this.eventUrl(id)).subscribe();
+    await firstValueFrom(this.http.delete(this.eventUrl(id)));
     return true;
   }
 
@@ -135,7 +135,7 @@ export class DatabaseService {
       return false;
     }
 
-    this.http.post(this.orderUrl(newOrder.id), newOrder).subscribe();
+    await firstValueFrom(this.http.post(this.orderUrl(newOrder.id), newOrder));
     return true;
   }
 
@@ -184,7 +184,7 @@ export class DatabaseService {
       return false;
     }
     
-    this.http.delete(this.orderUrl(id)).subscribe();
+    await firstValueFrom(this.http.delete(this.orderUrl(id)));
     return true;
   }
 
