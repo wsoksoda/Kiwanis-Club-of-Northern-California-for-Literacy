@@ -1,4 +1,6 @@
 <div class="body">
+	<hr>
+	<h2>Book Orders</h2>
 	<div class="card" *ngFor="let o of orders; let i = index">
 		<app-admin-order
 			[order] = "orders[i]"

@@ -8,3 +8,8 @@
 	margin: 0rem 5rem 1rem 5rem;
 	padding: 1rem;
 }
+
+h2{
+	text-align: center;
+    color: var(--secondary)
+}

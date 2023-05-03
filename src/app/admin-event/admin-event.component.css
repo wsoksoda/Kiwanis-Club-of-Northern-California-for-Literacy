@@ -12,3 +12,8 @@
 	background-color: var(--secondary);
 	border-color: var(--secondary);
 }
+
+h2{
+	text-align: center;
+    color: var(--secondary)
+}
