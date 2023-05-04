@@ -7,4 +7,8 @@ h2{
     text-align: center;
     color: var(--secondary)
 }
-
+.btn-primary{
+    background-color: var(--secondary);
+	border-color: var(--secondary);
+    color:black;
+}
